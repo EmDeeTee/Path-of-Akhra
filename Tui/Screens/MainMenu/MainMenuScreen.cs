@@ -5,7 +5,7 @@ using Tui.Screens.Introduction;
 namespace Tui.Screens.MainMenu;
 
 public class MainMenuScreen(GameSession gameSession) : IScreen {
-    public void Show() {
+    public IScreen? Show() {
         AnsiConsole.Clear();
         
         FigletText title = new FigletText("Path of Akhra")
@@ -25,19 +25,20 @@ public class MainMenuScreen(GameSession gameSession) : IScreen {
 
         switch (option) {
             case MainMenuChoice.WalkThePath:
-                new IntroductionScreen(gameSession).Show();
-                break;
+                return new IntroductionScreen(gameSession);
         
             case MainMenuChoice.HallOfFame:
-                throw new NotImplementedException("Hall of Fame is not yet implemented");
-                break;
+                AnsiConsole.MarkupLine("[grey]The Hall of Fame is not yet implemented.[/]");
+                Renderables.PressAnyKey();
+                Console.ReadKey(true);
+                return this;
             
             case MainMenuChoice.Quit:
                 AnsiConsole.MarkupLine("[grey]Goodbye.[/]");
-                break;
+                return null;
             
             default:
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(option), option, "Unknown main menu choice.");
         }
     }
 }

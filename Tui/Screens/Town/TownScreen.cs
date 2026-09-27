@@ -1,11 +1,11 @@
 ﻿using Game;
-using Game.Settlements;
 using Spectre.Console;
+using Tui.Screens.MainMenu;
 
 namespace Tui.Screens.Town;
 
 public class TownScreen(GameSession gameSession) : IScreen {
-    public void Show() {
+    public IScreen Show() {
         AnsiConsole.Clear();
 
         AnsiConsole.Write(
@@ -35,6 +35,6 @@ public class TownScreen(GameSession gameSession) : IScreen {
                 )
         );
         
-        //settlement.HasRested = true;
+        return new MainMenuScreen(gameSession);
     }
 }

@@ -1,13 +1,16 @@
 ﻿using Game;
-using Spectre.Console;
+using Tui.Screens;
 using Tui.Screens.MainMenu;
 
 namespace Tui;
 
 internal static class Program {
-    private static void Main(string[] args) {
+    private static void Main() {
         GameSession gameSession = new();
         
-        new MainMenuScreen(gameSession).Show();
+        IScreen? screen = new MainMenuScreen(gameSession);
+        while (screen != null) {
+            screen = screen.Show();
+        }
     }
 }

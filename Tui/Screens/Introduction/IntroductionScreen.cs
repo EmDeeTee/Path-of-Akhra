@@ -5,7 +5,7 @@ using Tui.Screens.Town;
 namespace Tui.Screens.Introduction;
 
 public class IntroductionScreen(GameSession gameSession) : IScreen {
-    public void Show() {
+    public IScreen Show() {
         AnsiConsole.Clear();
 
         DisplayIntroductionBit("[red]Hearken, O Pilgrim...[/]");
@@ -14,7 +14,7 @@ public class IntroductionScreen(GameSession gameSession) : IScreen {
         DisplayIntroductionBit("Tread now the Path of [blue]Akhra,[/] slayer of [blue]Vaul[/].");
         DisplayIntroductionBit("[red]Fall and rise.[/]");
         
-        new TownScreen(gameSession).Show();
+        return new TownScreen(gameSession);
     }
 
     private static void DisplayIntroductionBit(string text) {
