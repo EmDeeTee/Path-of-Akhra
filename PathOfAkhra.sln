@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game", "Game\Game.csproj", "{A55BB61B-5EF2-4A0C-AD08-2F28C39475F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tui", "Tui\Tui.csproj", "{FF0697E0-70BC-4063-B9AD-1828633BDC28}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A55BB61B-5EF2-4A0C-AD08-2F28C39475F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A55BB61B-5EF2-4A0C-AD08-2F28C39475F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A55BB61B-5EF2-4A0C-AD08-2F28C39475F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A55BB61B-5EF2-4A0C-AD08-2F28C39475F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF0697E0-70BC-4063-B9AD-1828633BDC28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF0697E0-70BC-4063-B9AD-1828633BDC28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF0697E0-70BC-4063-B9AD-1828633BDC28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF0697E0-70BC-4063-B9AD-1828633BDC28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
