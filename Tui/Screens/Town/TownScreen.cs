@@ -8,33 +8,66 @@ public class TownScreen(GameSession gameSession) : IScreen {
     public IScreen Show() {
         AnsiConsole.Clear();
 
-        AnsiConsole.Write(
-        new Panel(
-                new Align(
-                    new Markup(gameSession.CurrentSettlement.PrintHeader()),
-                    HorizontalAlignment.Center
-                )
-            )
-            .Border(BoxBorder.Double)
-            .BorderStyle(new Style(Color.Grey))
-            .Padding(2, 1)
-        );
+        ShowSettlementPanel();
+        Renderables.ShowPlayerPanel(gameSession.Player);
 
         AnsiConsole.WriteLine();
 
-        string choice = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
+        TownChoice choice = AnsiConsole.Prompt(
+            new SelectionPrompt<TownChoice> {
+                    Converter = static choice => choice.ToDisplayName()
+                }
                 .Title("[red]The Path awaits.[/]")
                 .PageSize(5)
                 .HighlightStyle(
                     new Style(Color.Red, decoration: Decoration.Bold)
                 )
-                .AddChoices(
-                    "Path",
-                    "Rest"
-                )
+                .AddChoices(Enum.GetValues<TownChoice>())
         );
+
+        switch (choice) {
+            case TownChoice.ContinueThePath:
+                return this;
+
+            case TownChoice.Rest:
+                Rest();
+                return this;
+            
+            default:
+                throw new ArgumentOutOfRangeException(nameof(choice), choice, "Unknown choice");
+        }
+    }
+
+    private void ShowSettlementPanel() {
+        AnsiConsole.Write(
+            new Panel(
+                    new Align(
+                        new Markup(gameSession.CurrentSettlement.PrintHeader()),
+                        HorizontalAlignment.Center
+                    )
+                )
+                .Header("Settlement")
+                .Border(BoxBorder.Double)
+                .BorderStyle(new Style(Color.Grey))
+                .Padding(2, 1)
+        );
+    }
+
+    private void Rest() {
+        AnsiConsole.Clear();
         
-        return new MainMenuScreen(gameSession);
+        if (gameSession.CurrentSettlement.HasPlayerRested) {
+            AnsiConsole.Write("You have already rested at this settlement.");
+            Console.ReadKey();
+            return;
+        }
+        
+        int recoveredHealth = gameSession.Player.Heal(100);
+        gameSession.CurrentSettlement.HasPlayerRested = true;
+
+        AnsiConsole.Write(recoveredHealth <= 0
+            ? new Markup("You sleep, but you were already fully rested.")
+            : new Markup($"You sleep and recover [red]{recoveredHealth}[/] health."));
+        Console.ReadKey();
     }
 }

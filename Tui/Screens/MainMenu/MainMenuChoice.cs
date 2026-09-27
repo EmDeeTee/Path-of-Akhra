@@ -7,13 +7,3 @@ public enum MainMenuChoice {
     HallOfFame,
     Quit
 }
-
-public static class MainMenuChoiceExtensions {
-    public static string ToDisplayName(this MainMenuChoice value) {
-        return Regex.Replace(
-            value.ToString(),
-            "(?<!^)([A-Z])",
-            " $1"
-        );
-    }
-}

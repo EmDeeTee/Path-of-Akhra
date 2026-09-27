@@ -1,9 +1,25 @@
-﻿using Spectre.Console;
+﻿using Game;
+using Spectre.Console;
 
 namespace Tui;
 
 internal static class Renderables {
     internal static void PressAnyKey() {
         AnsiConsole.Write(new Markup("[gray]Any key to continue...[/]"));
-    } 
+    }
+
+    internal static void ShowPlayerPanel(Player player) {
+        AnsiConsole.Write(
+            new Panel(
+                    new Align(
+                        new Markup($"[red]{player.Health}[/]/[gray]{player.MaxHealth}[/] | {player.Gold}"),
+                        HorizontalAlignment.Center
+                    )
+                )
+                .Header("You")
+                .Border(BoxBorder.Double)
+                .BorderStyle(new Style(Color.Yellow))
+                .Padding(2, 1)
+        );
+    }
 }
