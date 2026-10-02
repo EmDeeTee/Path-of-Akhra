@@ -12,7 +12,7 @@ internal static class Renderables {
         AnsiConsole.Write(
             new Panel(
                     new Align(
-                        new Markup($"[red]{player.Health}[/]/[gray]{player.MaxHealth}[/] | {player.Gold}"),
+                        new Markup($"[red]{player.Health}[/]/[gray]{player.MaxHealth}[/] | [yellow]{player.Gold} Gold[/]"),
                         HorizontalAlignment.Center
                     )
                 )

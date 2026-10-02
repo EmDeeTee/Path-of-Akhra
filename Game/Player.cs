@@ -7,6 +7,10 @@ public class Player(int gold) {
 
     public int MaxHealth { get; private set; } = 100;
 
+    public void AddGold(int amount) {
+        Gold += amount;
+    }
+
     public int Heal(int amount) {
         Health += amount;
         if (Health > MaxHealth) {

@@ -1,6 +1,8 @@
 ﻿using Game;
+using Game.Settlements;
 using Spectre.Console;
 using Tui.Screens.MainMenu;
+using Tui.Screens.Travel;
 
 namespace Tui.Screens.Town;
 
@@ -27,7 +29,8 @@ public class TownScreen(GameSession gameSession) : IScreen {
 
         switch (choice) {
             case TownChoice.ContinueThePath:
-                return this;
+                gameSession.TravelTo(Settlement.Next());
+                return new TravelScreen(gameSession);
 
             case TownChoice.Rest:
                 Rest();
