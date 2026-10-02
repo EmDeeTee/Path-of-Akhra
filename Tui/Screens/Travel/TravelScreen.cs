@@ -79,7 +79,7 @@ public class TravelScreen(GameSession gameSession) : IScreen {
         AnsiConsole.Write(
             new Panel(
                     new Align(
-                        new Markup(settlement.PrintHeader()),
+                        new Markup(settlement.GetHeader()),
                         HorizontalAlignment.Center
                     )
                 )

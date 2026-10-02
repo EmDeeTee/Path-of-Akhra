@@ -3,7 +3,7 @@
 public record Settlement(string Name, int Population) {
     public bool HasPlayerRested { get; set; }
 
-    public string PrintHeader() {
+    public string GetHeader() {
         return $"{Name} | Population: {Population}";
     }
 

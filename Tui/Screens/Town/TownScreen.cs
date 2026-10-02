@@ -45,7 +45,7 @@ public class TownScreen(GameSession gameSession) : IScreen {
         AnsiConsole.Write(
             new Panel(
                     new Align(
-                        new Markup(gameSession.CurrentSettlement.PrintHeader()),
+                        new Markup(gameSession.CurrentSettlement.GetHeader()),
                         HorizontalAlignment.Center
                     )
                 )
