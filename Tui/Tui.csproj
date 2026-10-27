@@ -8,11 +8,22 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="NAudio" Version="3.3.0" />
       <PackageReference Include="Spectre.Console" Version="0.57.2" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Game\Game.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <SupportedOSPlatform Include="windows" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Assets\**\*">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>
