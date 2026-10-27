@@ -1,10 +1,11 @@
 ﻿using Game.Events;
+using Game.Player;
 using Game.Settlements;
 
 namespace Game;
 
 public sealed class GameSession {
-    public Player Player { get; } = new(0);
+    public PlayerCharacter Player { get; } = new(0);
 
     public Settlement CurrentSettlement { get; private set; } = new("Lonely Road", 1);
 
@@ -35,13 +36,18 @@ public sealed class GameSession {
         if (result.HealedHealth > 0) {
             Player.Heal(result.HealedHealth);
         }
+
+        if (result.Enemy != null) {
+            Player.CurrentCombatTarget = result.Enemy;
+        }
     }
 
     private static IEvent[] GenerateNewEventSequence() {
         IEvent[] possibleEvents = [
             new FoundGoldEvent(),
             new RestingTravelerEvent(),
-            new StormEvent()
+            new StormEvent(),
+            new CombatEvent()
         ];
 
         int eventCount = Random.Shared.Next(1, 4);

@@ -1,4 +1,5 @@
 ﻿using Game;
+using Game.Player;
 using Spectre.Console;
 
 namespace Tui;
@@ -8,7 +9,7 @@ internal static class Renderables {
         AnsiConsole.Write(new Markup("[gray]Any key to continue...[/]"));
     }
 
-    internal static void ShowPlayerPanel(Player player) {
+    internal static void ShowPlayerPanel(PlayerCharacter player) {
         AnsiConsole.Write(
             new Panel(
                     new Align(

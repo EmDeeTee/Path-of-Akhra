@@ -2,5 +2,6 @@
 
 public enum TownChoice {
     ContinueThePath,
+    Skills,
     Rest
 }

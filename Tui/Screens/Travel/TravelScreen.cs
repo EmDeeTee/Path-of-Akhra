@@ -2,6 +2,7 @@ using Game;
 using Game.Events;
 using Game.Settlements;
 using Spectre.Console;
+using Tui.Screens.Combat;
 using Tui.Screens.Town;
 
 namespace Tui.Screens.Travel;
@@ -64,6 +65,10 @@ public class TravelScreen(GameSession gameSession) : IScreen {
 
         if (result.HealedHealth > 0) {
             AnsiConsole.MarkupLine($"[red]{result.HealedHealth}[/] health recovered.");
+        }
+
+        if (result.Enemy != null) {
+            new CombatScreen(gameSession).Show();
         }
 
         Renderables.PressAnyKey();

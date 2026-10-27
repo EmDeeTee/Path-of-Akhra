@@ -2,6 +2,7 @@
 using Game.Settlements;
 using Spectre.Console;
 using Tui.Screens.MainMenu;
+using Tui.Screens.SkillSelect;
 using Tui.Screens.Travel;
 
 namespace Tui.Screens.Town;
@@ -34,6 +35,10 @@ public class TownScreen(GameSession gameSession) : IScreen {
 
             case TownChoice.Rest:
                 Rest();
+                return this;
+            
+            case TownChoice.Skills:
+                new SkillSelectScreen(gameSession).Show();
                 return this;
             
             default:
